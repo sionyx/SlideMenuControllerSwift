@@ -217,6 +217,10 @@ open class SlideMenuController: UIViewController, UIGestureRecognizerDelegate {
     open override var preferredStatusBarStyle: UIStatusBarStyle {
         return self.mainViewController?.preferredStatusBarStyle ?? .default
     }
+
+    open override var prefersStatusBarHidden: Bool {
+        return self.mainViewController?.prefersStatusBarHidden ?? super.prefersStatusBarHidden
+    }
     
     open override func openLeft() {
         guard let _ = leftViewController else { // If leftViewController is nil, then return
