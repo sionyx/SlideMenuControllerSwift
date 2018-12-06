@@ -16,6 +16,8 @@ import UIKit
     @objc optional func rightDidOpen()
     @objc optional func rightWillClose()
     @objc optional func rightDidClose()
+    @objc optional func leftPanGestureRecognizerCreated(_ leftPanGestureRecognizer: UIPanGestureRecognizer)
+    @objc optional func rightPanGestureRecognizerCreated(_ rightPanGestureRecognizer: UIPanGestureRecognizer)
 }
 
 public struct SlideMenuOptions {
@@ -284,6 +286,7 @@ open class SlideMenuController: UIViewController, UIGestureRecognizerDelegate {
                     leftPanGesture = UIPanGestureRecognizer(target: self, action: #selector(self.handleLeftPanGesture(_:)))
                     leftPanGesture!.delegate = self
                     view.addGestureRecognizer(leftPanGesture!)
+                    delegate?.leftPanGestureRecognizerCreated?(leftPanGesture!)
                 }
             }
             
@@ -305,6 +308,7 @@ open class SlideMenuController: UIViewController, UIGestureRecognizerDelegate {
                     rightPanGesture = UIPanGestureRecognizer(target: self, action: #selector(self.handleRightPanGesture(_:)))
                     rightPanGesture!.delegate = self
                     view.addGestureRecognizer(rightPanGesture!)
+                    delegate?.rightPanGestureRecognizerCreated?(rightPanGesture!)
                 }
             }
             
